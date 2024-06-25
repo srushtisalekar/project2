@@ -1,3 +1,4 @@
+/* Base styles */
 body {
     font-family: Arial, sans-serif;
     background-color: #f0f0f0;
@@ -5,9 +6,17 @@ body {
     padding: 0;
 }
 
-h1, h2 {
+h1 {
     text-align: center;
-    color: #333;
+    color: #45a049ce;
+    font-size: 2.5rem; /* Font size */
+    text-transform: uppercase; /* Uppercase */
+}
+
+h2 {
+    text-align: center;
+    color: #4a4846e6;
+    font-size: 1.5rem; /* Font size */
 }
 
 .container {
@@ -16,7 +25,17 @@ h1, h2 {
     background-color: #fff;
     padding: 20px;
     border-radius: 8px;
-    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.form-container {
+    display: flex;
+    justify-content: space-between; /* Distribute sections evenly */
+    gap: 20px; /* Gap between form sections */
+}
+
+.form-section {
+    flex: 1; /* Each form section takes equal width */
 }
 
 input[type="text"],
@@ -27,7 +46,9 @@ button {
     border: 1px solid #ccc;
     border-radius: 4px;
     font-size: 14px;
- 
+    border-color: #45a049;
+    width: 100%; /* Full width for responsiveness */
+    box-sizing: border-box; /* Include padding and border in width */
 }
 
 button {
@@ -35,31 +56,92 @@ button {
     color: white;
     cursor: pointer;
     transition: background-color 0.3s ease;
+    width: 50%;
+    margin-left: 26%;
 }
 
-button:hover {
+button,.delbutton:hover {
     background-color: #45a049;
 }
 
-table {
+.delbutton, .editbutton { 
+    background-color: #4CAF50;
+    color: white;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    width: 50%;
+}
+
+/* Table styling */
+.table-container {
+    overflow-x: auto;
+}
+
+.cityPopulationTable {
     width: 100%;
     border-collapse: collapse;
-    margin-top: 10px;
-    background-color: #fff;
-    border-radius: 8px;
-    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    margin: 20px 0;
 }
 
-th, td {
-    border: 1px solid #dddddd;
+.cityPopulationTable th, .cityPopulationTable td {
+    padding: 12px 15px;
+    border: 1px solid #ddd;
     text-align: left;
-    padding: 8px;
 }
 
-th {
+.cityPopulationTable th {
     background-color: #f2f2f2;
 }
 
-/* .deleteId{
-    
-} */
+.cityPopulationTable tbody tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+.cityPopulationTable tbody tr:hover {
+    background-color: #f1f1f1;
+}
+
+/* Style for the search input */
+#searchInput {
+    width: 50%; /* Full width for responsiveness */
+    margin: 10px auto; /* Center the input */
+    padding: 10px; /* Add padding for better usability */
+    border: 1px solid #ccc; /* Border styling */
+    border-radius: 4px; /* Rounded corners */
+    font-size: 16px; /* Larger font for better readability */
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+    transition: box-shadow 0.3s ease; /* Smooth transition for focus effect */
+    border-color: #45a049;
+    margin-top: 6%;
+    margin-left: 24%;
+}
+
+#searchInput:focus {
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2); /* Enhanced shadow on focus */
+    border-color: #4CAF50; /* Change border color on focus */
+    outline: none; /* Remove default outline */
+}
+
+/* Responsive adjustments */
+@media screen and (max-width: 768px) {
+    .container {
+        width: 90%;
+    }
+
+    .form-container {
+        flex-direction: column; /* Stack form sections vertically on small screens */
+    }
+
+    #searchInput {
+        width: 100%;
+        margin-left: 0;
+        margin-top: 10px;
+    }
+    .delbutton, .editbutton { 
+        background-color: #4CAF50;
+        color: white;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+        width: 90%;
+    }
+}
