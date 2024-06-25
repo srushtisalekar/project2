@@ -20,8 +20,9 @@ function renderCityPopulations() {
             <td>${city.year}</td>
             <td>${city.population}</td>
             <td>
-                <button onclick="editCityPopulation(${city.id}, '${city.cityName}', '${city.countryName}', ${city.year}, ${city.population})">Edit</button>
-                <button onclick="deleteCityPopulationById(${city.id})">Delete</button>
+                <button class="editbutton" onclick="editCityPopulation(${city.id}, '${city.cityName}', '${city.countryName}', 
+                ${city.year}, ${city.population})">Edit</button>
+                <button class="delbutton" onclick="deleteCityPopulationById(${city.id})">Delete</button>
             </td>
         `;
         cityPopulationBody.appendChild(tr);
@@ -73,7 +74,7 @@ function updateCityPopulation() {
         city.year = year;
         city.population = population;
 
-        updateCityPopulation(); // Save city populations to local storage
+        saveCityPopulations(); // Save city populations to local storage
         document.getElementById('updateId').value = '';
         document.getElementById('updateCityName').value = '';
         document.getElementById('updateCountryName').value = '';
@@ -85,10 +86,24 @@ function updateCityPopulation() {
         alert('Please enter valid data');
     }
 }
+
 // Function to save city populations to local storage
 function saveCityPopulations() {
-    // In real usage, you would uncomment the following line to save to local storage
+    //  the following line to save to local storage
      localStorage.setItem('cityPopulations', JSON.stringify(cityPopulations));
+}
+
+// Function to edit city population entry (populate update form) and scroll to update section
+function editCityPopulation(id, cityName, countryName, year, population) {
+    document.getElementById('updateId').value = id;
+    document.getElementById('updateCityName').value = cityName;
+    document.getElementById('updateCountryName').value = countryName;
+    document.getElementById('updateYear').value = year;
+    document.getElementById('updatePopulation').value = population;
+
+    // Scroll to the update section
+    const updateSection = document.getElementById('updateSection');
+    updateSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
 }
 
 
@@ -97,7 +112,7 @@ function deleteCityPopulationById(id) {
     const index = cityPopulations.findIndex(city => city.id === id);
 
     if (index !== -1) {
-        cityPopulations.splice(index, 1);
+        cityPopulations.splice(index, 1);   //The splice method in JavaScript is used to add or remove elements from an array.
         saveCityPopulations(); // Save city populations to local storage
         alert('City population deleted successfully!');
         renderCityPopulations(); // Re-render city populations
@@ -107,23 +122,13 @@ function deleteCityPopulationById(id) {
 }
 
 
-// Function to edit city population entry (populate update form)
-function editCityPopulation(id, cityName, countryName, year, population) {
-    document.getElementById('updateId').value = id;
-    document.getElementById('updateCityName').value = cityName;
-    document.getElementById('updateCountryName').value = countryName;
-    document.getElementById('updateYear').value = year;
-    document.getElementById('updatePopulation').value = population;
-}
-
-
-
 // Function to render filtered city populations based on search input
 function searchCities() {
     const searchInput = document.getElementById('searchInput').value.toLowerCase();
     const filteredCities = cityPopulations.filter(city => city.cityName.toLowerCase().includes(searchInput));
     renderFilteredCities(filteredCities);
 }
+
 
 // Function to render filtered city populations(For a search-bar)
 function renderFilteredCities(filteredCities) {
@@ -138,17 +143,23 @@ function renderFilteredCities(filteredCities) {
             <td>${city.year}</td>
             <td>${city.population}</td>
              <td>
-                <button onclick="editCityPopulation(${city.id}, '${city.cityName}', '${city.countryName}', ${city.year}, ${city.population})">Edit</button>
+                <button onclick="editCityPopulation(${city.id}, '${city.cityName}', '${city.countryName}', ${city.year}, 
+                ${city.population})">Edit</button>
                 <button onclick="deleteCityPopulationById(${city.id})">Delete</button>
             </td>
         `;
-        cityPopulationBody.appendChild(tr);
+
+        /*appendChild is used to add each newly created table row (<tr>) to the table body (<tbody>),
+         which updates the displayed list of cities in the table.*/
+        cityPopulationBody.appendChild(tr);  
     });
 }
 
+
 // Initial rendering of city populations on page load
+
 window.onload = function() {
-    // In real usage, you would uncomment the following line to initialize from local storage
+    //  initialize from local storage
     initializeCityPopulations();
     renderCityPopulations();
 }
