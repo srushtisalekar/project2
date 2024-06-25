@@ -4,50 +4,48 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>City Population Data</title>
-  <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <h1>City Population Data</h1>
     <div class="container">
-        <h2>Create</h2>
-        <input type="text" id="cityName" placeholder="City Name">
-        <input type="text" id="countryName" placeholder="Country Name">
-        <input type="number" id="year" placeholder="Year">
-        <input type="number" id="population" placeholder="Population">
-        <button onclick="createCityPopulation()">Add City Population</button>
-    </div>
-
-    <div class="container">
-        <h2>Update</h2>
-        <input type="number" id="updateId" placeholder="Enter ID">
-        <input type="text" id="updateCityName" placeholder="Enter new city name">
-        <input type="text" id="updateCountryName" placeholder="Enter new country name">
-        <input type="number" id="updateYear" placeholder="Enter new year">
-        <input type="number" id="updatePopulation" placeholder="Enter new population">
-        <button onclick="updateCityPopulation()">Update City Population</button>
-
-        <h2>Delete</h2>
-        <input type="number" id="deleteId" placeholder="Enter ID">
-        <button onclick="deleteCityPopulation()">Delete City Population</button>
-    </div>
-
-    <div class="container">
-        <h2>Search City Name</h2>
-        <input type="text" id="searchInput" placeholder="Search by city name" onkeyup="searchCities()">
-        <table id="cityPopulationTable">
-            <thead>
-                <tr>
-                    <th>ID</th>
-                    <th>City Name</th>
-                    <th>Country Name</th>
-                    <th>Year</th>
-                    <th>Population</th>
-                    <th>Action</th>
-                </tr>
-            </thead>
-            <tbody id="cityPopulationBody">
-            </tbody>
-        </table>
+        <div class="form-container">
+            <div class="form-section">
+                <h2>Create New City Data</h2>
+                <input type="text" id="cityName" placeholder="City Name">
+                <input type="text" id="countryName" placeholder="Country Name">
+                <input type="number" id="year" placeholder="Year">
+                <input type="number" id="population" placeholder="Population">
+                <button onclick="createCityPopulation()">Add City Population</button>
+            </div>
+            <div class="form-section" id="updateSection">
+                <h2>Update City Data</h2>
+                <input type="number" id="updateId" placeholder="Enter ID">
+                <input type="text" id="updateCityName" placeholder="Enter new city name">
+                <input type="text" id="updateCountryName" placeholder="Enter new country name">
+                <input type="number" id="updateYear" placeholder="Enter new year">
+                <input type="number" id="updatePopulation" placeholder="Enter new population">
+                <button onclick="updateCityPopulation()">Update City Population</button>
+            </div>
+        </div>
+       
+        <input type="text" id="searchInput" class="searchInput" placeholder="Search by City Name ......" onkeyup="searchCities()">
+        <div class="table-container">
+            <table id="cityPopulationTable" class="cityPopulationTable">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>City Name</th>
+                        <th>Country Name</th>
+                        <th>Year</th>
+                        <th>Population</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody id="cityPopulationBody">
+                </tbody>
+            </table>
+        </div>
     </div>
    
     <script src="app.js"></script>
